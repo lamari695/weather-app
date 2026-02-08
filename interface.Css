@@ -1,0 +1,224 @@
+.star{
+border: solid black;
+margin-left: 380px;
+height: 400px;
+width: 400px;
+}
+#title{
+text-align: center;
+
+
+}
+#location{
+height: 40px;
+width: 40px;
+border: solid black;
+margin-left: 25px;
+margin-bottom: -15px;
+}
+#search{
+text-align: center;  
+height: 50px;
+width: 300px;
+margin-left:400px ;
+}
+#second_table{
+border: solid black;
+width: 400px;
+height: 200px;
+}
+#star{
+text-align: center;
+font-size: 70px;
+margin-top: -150px;
+}
+#main_des{
+text-align: center;
+font-size: 20px;
+margin-top: 50px;
+}
+#today_img{
+height: 300px;
+width: 300px;
+margin-top: -40px;
+margin-left: 60px;
+}
+#background{
+background-color: aqua;
+
+}
+#super{
+margin-bottom:  60px;
+background-color: black;
+}
+#super_2{
+width: 68px;
+rotate: 90deg;
+margin-top: -35px;
+color: black;
+background-color: black;
+}
+#humidity_value{
+margin-top:100px ;
+margin-left:320px ;
+margin-bottom:-200px ;
+font-size: 25px;
+}
+#feel_like_image{
+margin-top:30px ;
+margin-left:110px ;
+margin-bottom:-250px ;
+font-size: 20px;
+}
+#humidity{
+margin-left:300px ;
+margin-bottom: -120px;
+margin-top: 130px;
+}
+
+#feel_like{
+margin-top:60px ;
+margin-left:110px ;
+margin-bottom:-380px
+
+}
+#feel_img{
+width: 50px;
+height: 50px;
+margin-top:25px ;
+margin-bottom:-150px ;
+margin-left: 50px;
+}
+#humidity_img{
+width: 50px;
+height: 50px;
+margin-left:240px ;
+margin-top: 100px;
+margin-bottom:  -190px ;
+}
+#sun{
+background-color: white;
+color: white;
+}
+#city{
+text-align: center;
+margin-left: 80px;
+margin-top:-400px ;
+font-size: 20px;
+}
+#country{
+text-align: center;
+margin-top:-402px;
+ font-size: 20px;
+ margin-left: -110px;   
+}
+#max_temp{
+text-align: center;
+margin-left: -120px;
+margin-top: -120px;
+font-size: 20px;
+}
+#min_temp{
+text-align: center;
+margin-top: -116px;
+margin-right: -150px;
+font-size: 20px;
+}
+#main_tem{
+text-align: center;
+margin-top: -90px;
+font-size: 60px;
+}
+#wind{
+text-align: center;
+
+font-size: 20px;
+}
+#sm{
+text-align: center;
+margin-left: -120px;
+margin-top: -120px;
+font-size: 20px;
+
+
+}
+#future_weather{
+border: solid black;
+width: 1500px;
+height: 300px;
+border-collapse: collapse;
+
+}
+
+#line{border-top: solid black;
+}
+.future_img
+{
+height: 100px;
+width: 100px;
+margin-left: 20px;
+margin-top: 20px;
+}
+.description{
+text-align: center;
+font-size: 20px;
+}
+.images{
+height: 140px;
+width: 140px;
+margin-left: 70px;
+text-align: center;
+margin-top: 20px;
+margin-bottom: -100px;
+
+}
+
+.highest_temp{
+margin-left: 0px;
+margin-left: -120px;
+margin-bottom: -10px;
+margin-top: 80px;
+text-align: center;
+font-size: 25px;
+}
+.lowest_temp{
+text-align: center;
+margin-left: -460px;
+margin-top: -40px;
+margin-bottom: 0px;
+font-size: 25px;
+}
+#lt{
+text-align: center;
+margin-left: -200px;
+margin-top: -30px;
+margin-bottom: 25px;
+font-size: 20px;
+}
+
+.day_title{
+text-align: center;
+margin-left: -360px;
+margin-top: -25px;
+margin-bottom: 10px;
+font-size: 15px;
+border-bottom: solid black;
+border-left: solid black;
+
+
+}
+.gold{
+border-right: 3px solid black; 
+
+
+} 
+#l6{
+margin-left: -160px;
+
+}
+.date{
+margin-top: -110px;
+text-align: center;
+font-size: 20px;}
+
+

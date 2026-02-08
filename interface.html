@@ -1,0 +1,338 @@
+<body id = 'background'>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="C:\Users\lamar\OneDrive\Desktop\PD\small projects\Weather app\interface.Css">
+<script>
+async function  star (a){
+ try {
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${a}&units=metric&appid=70fafcebe0222aef177662141bd3d397`);
+
+ let orginal = a
+document.getElementById('search').value= 'Loading...'
+    const moon = await response.json();
+ console.log(moon)
+    if (!response.ok) {
+       document.getElementById('search').value= 'invalid city name and city was not found ' 
+      throw new Error("Failed request");
+    
+    }
+    else{
+      let orginal = document.getElementById('search').value
+     document.getElementById('search').value= 'Loading...'  
+    }
+     const lat = moon.coord.lat;
+  const lon = moon.coord.lon;
+const day = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=70fafcebe0222aef177662141bd3d397`);
+  const sun = await  day.json();
+if(!day.ok){
+    throw new Error("Failed request");
+   }
+days_of_week = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+  const day_date_1=  sun.list[8].dt_txt.slice(0,10)
+  const day_date_2 = sun.list[16].dt_txt.slice(0,10)
+   const day_date_3 = sun.list[24].dt_txt.slice(0,10)
+const  day_date_4 =  sun.list[32].dt_txt.slice(0,10)
+  const day_date_5= sun.list[39].dt_txt.slice(0,10)
+  day_name = new Date(day_date_1).getDay()
+  day_name_2 = new Date(day_date_2).getDay()
+  day_name_3 =  new Date(day_date_3).getDay() 
+  day_name_4 = new Date(day_date_4).getDay()
+  day_name_5 = new Date(day_date_5).getDay()
+document.getElementById('day_1').innerHTML = days_of_week[day_name]
+document.getElementById('day_5').innerHTML = days_of_week[day_name_5]
+document.getElementById('day_2').innerHTML = days_of_week[day_name_2]
+document.getElementById('day_3').innerHTML = days_of_week[day_name_3]
+document.getElementById('day_4').innerHTML = days_of_week[day_name_4]
+    
+
+    // Kelvin → Celsius
+    const feelsLikeC =
+      Math.round(moon.main.temp );
+      const max_temp = Math.round(moon['main']['temp_max'] )
+      const min_temp = Math.round(moon['main']['temp_min'] )
+     document.getElementById('search').value = orginal
+      document.getElementById('main_des').innerHTML = moon['weather']['0']['description']
+     document.getElementById('max_temp').innerHTML = 'High: '+''+max_temp+'°C'
+      document.getElementById('high1').innerHTML = 'high :'+''+ Math.round(sun.list[8].main.temp_max) + '°C'
+  document.getElementById('high2').innerHTML = 'high :'+''+  Math.round(sun.list[16].main.temp_max) + '°C'
+  document.getElementById('high3').innerHTML = 'high :'+''+  Math.round(sun.list[24].main.temp_max) + '°C'
+  document.getElementById('high4').innerHTML = 'high :'+''+  Math.round(sun.list[32].main.temp_max) + '°C'
+  document.getElementById('high5').innerHTML = 'high :'+''+  Math.round(sun.list[39].main.temp_max) + '°C'
+  document.getElementById('l2').innerHTML = 'min :'+'' + Math.round(sun.list[16].main.temp_min) + '°C'
+  document.getElementById('l3').innerHTML = 'min :'+'' + Math.round(sun.list[24].main.temp_min) + '°C'
+  document.getElementById('l4').innerHTML = 'min :'+'' + Math.round(sun.list[32].main.temp_min) + '°C'
+  document.getElementById('l5').innerHTML = 'min :'+'' + Math.round(sun.list[39].main.temp_min) + '°C'
+   document.getElementById('l6').innerHTML =  'min :'+'' + Math.round(sun.list[39].main.temp_min) + '°C'
+  document.getElementById('d1').innerHTML =  sun.list[8].weather[0].description
+  document.getElementById('d2').innerHTML = sun.list[16].weather[0].description
+  document.getElementById('d3').innerHTML = sun.list[24].weather[0].description
+  document.getElementById('d4').innerHTML = sun.list[32].weather[0].description
+  document.getElementById('des5').innerHTML = sun.list[39].weather[0].description
+  const day_one = sun.list[8].weather[0].icon
+const day_two = sun.list[16].weather[0].icon
+const day_three = sun.list[24].weather[0].icon
+const day_four = sun.list[32].weather[0].icon
+const day_five = sun.list[39].weather[0].icon
+document.getElementById('image_1').src =`https://openweathermap.org/img/wn/${day_one}@2x.png`
+document.getElementById('image_2').src = `https://openweathermap.org/img/wn/${day_two}@2x.png`
+document.getElementById('image_3').src =`https://openweathermap.org/img/wn/${day_three}@2x.png`
+document.getElementById('image_4').src =`https://openweathermap.org/img/wn/${day_four}@2x.png`
+document.getElementById('image_5').src =`https://openweathermap.org/img/wn/${day_five}@2x.png`
+     document.getElementById('min_temp').innerHTML = 'Min: '+''+min_temp+'°C'
+if(feelsLikeC <= 10){
+document.getElementById('feel_img').src='C:\\Users\\lamar\\OneDrive\\Pictures\\weather images\\feel like cold.jpg'
+}
+else{
+document.getElementById('feel_img').src='C:\\Users\\lamar\\OneDrive\\Pictures\\weather images\\feel like hot.jpg' 
+}
+    document.getElementById("main_tem").innerHTML = feelsLikeC + '°C';
+   let dad = moon['weather']['0']['icon']
+   let sam = `https://openweathermap.org/img/wn/${dad}@2x.png`;
+   document.getElementById("today_img").src = sam
+   document.getElementById("feel_like_image").innerHTML =Math.round(moon['main']['feels_like'] )
+document.getElementById("wind").innerHTML = "Wind" + ':' + moon.wind.speed +"m/s"
+document.getElementById("city").innerHTML = moon.name
+document.getElementById("country").innerHTML = moon.sys.country
+        
+       
+
+
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  star("London");
+
+})
+
+
+
+async function stone() {
+  try {
+    const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=70fafcebe0222aef177662141bd3d397');
+ 
+    const moon = await response.json();
+
+ console.log(moon)
+
+    if (!response.ok) {
+      throw new Error("Failed request");
+    }
+   
+  const lat = moon.coord.lat;
+  const lon = moon.coord.lon;
+const day = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=70fafcebe0222aef177662141bd3d397`);
+  const sun = await  day.json();
+if(!day.ok){
+    throw new Error("Failed request");
+   }
+  console.log(sun)
+  days_of_week = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+  const day_date_1=  sun.list[8].dt_txt.slice(0,10)
+  const day_date_2 = sun.list[16].dt_txt.slice(0,10)
+   const day_date_3 = sun.list[24].dt_txt.slice(0,10)
+const  day_date_4 =  sun.list[32].dt_txt.slice(0,10)
+  const day_date_5= sun.list[39].dt_txt.slice(0,10)
+  day_name = new Date(day_date_1).getDay()
+  day_name_2 = new Date(day_date_2).getDay()
+  day_name_3 =  new Date(day_date_3).getDay() 
+  day_name_4 = new Date(day_date_4).getDay()
+  day_name_5 = new Date(day_date_5).getDay()
+document.getElementById('day_1').innerHTML = days_of_week[day_name]
+document.getElementById('day_5').innerHTML = days_of_week[day_name_5]
+document.getElementById('day_2').innerHTML = days_of_week[day_name_2]
+document.getElementById('day_3').innerHTML = days_of_week[day_name_3]
+document.getElementById('day_4').innerHTML = days_of_week[day_name_4]
+document.getElementById('date_1').innerHTML = day_date_1
+document.getElementById('date_2').innerHTML = day_date_2
+document.getElementById('date_3').innerHTML = day_date_3
+document.getElementById('date_4').innerHTML = day_date_4
+document.getElementById('date_5').innerHTML = day_date_5
+
+   document.getElementById('high1').innerHTML = 'high :'+''+ Math.round(sun.list[8].main.temp_max) + '°C'
+  document.getElementById('high2').innerHTML = 'high :'+''+  Math.round(sun.list[16].main.temp_max) + '°C'
+  document.getElementById('high3').innerHTML = 'high :'+''+  Math.round(sun.list[24].main.temp_max) + '°C'
+  document.getElementById('high4').innerHTML = 'high :'+''+  Math.round(sun.list[32].main.temp_max) + '°C'
+  document.getElementById('high5').innerHTML = 'high :'+''+  Math.round(sun.list[39].main.temp_max) + '°C'
+document.getElementById('l1').innerHTML = Math.round(sun.list[8].main.temp_max) + '°C'
+  document.getElementById('l2').innerHTML = 'min :'+'' + Math.round(sun.list[16].main.temp_min) + '°C'
+  document.getElementById('l3').innerHTML = 'min :'+'' + Math.round(sun.list[24].main.temp_min) + '°C'
+  document.getElementById('l4').innerHTML = 'min :'+'' + Math.round(sun.list[32].main.temp_min) + '°C'
+  document.getElementById('l5').innerHTML = 'min :'+'' + Math.round(sun.list[39].main.temp_min) + '°C'
+  
+  document.getElementById('l6').innerHTML =  'min :'+'' + Math.round(sun.list[39].main.temp_min) + '°C'
+document.getElementById('d1').innerHTML =  sun.list[8].weather[0].description
+  document.getElementById('d2').innerHTML = sun.list[16].weather[0].description
+  document.getElementById('d3').innerHTML = sun.list[24].weather[0].description
+  document.getElementById('d4').innerHTML = sun.list[32].weather[0].description
+  document.getElementById('des5').innerHTML = sun.list[39].weather[0].description
+   
+const day_one = sun.list[8].weather[0].icon
+const day_two = sun.list[16].weather[0].icon
+const day_three = sun.list[24].weather[0].icon
+const day_four = sun.list[32].weather[0].icon
+const day_five = sun.list[39].weather[0].icon
+document.getElementById('image_1').src =`https://openweathermap.org/img/wn/${day_one}@2x.png`
+document.getElementById('image_2').src = `https://openweathermap.org/img/wn/${day_two}@2x.png`
+document.getElementById('image_3').src =`https://openweathermap.org/img/wn/${day_three}@2x.png`
+document.getElementById('image_4').src =`https://openweathermap.org/img/wn/${day_four}@2x.png`
+document.getElementById('image_5').src =`https://openweathermap.org/img/wn/${day_five}@2x.png`
+   let dad = moon['weather']['0']['icon']
+   let sam = `https://openweathermap.org/img/wn/${dad}@2x.png`;
+    document.getElementById("today_img").src = sam
+
+     let orginal = document.getElementById('search').value
+ 
+   
+  
+ 
+
+  
+
+    // Kelvin → Celsius
+     document.getElementById("humidity_value").innerHTML= moon.wind.speed +'%'
+    const feelsLikeC = Math.round(moon.main.temp );
+      const max_temp = Math.round(moon['main']['temp_max'] )
+      const min_temp = Math.round(moon['main']['temp_min'] )
+     document.getElementById('search').value = orginal
+     document.getElementById('lt').innerHTML= 'Loading...'
+     document.getElementById('main_des').innerHTML = moon['weather']['0']['description']
+     document.getElementById('max_temp').innerHTML = 'High: '+''+max_temp+'°C' 
+
+      
+      
+     
+   
+if(feelsLikeC <= 10){
+document.getElementById('feel_img').src='C:\\Users\\lamar\\OneDrive\\Pictures\\weather images\\feel like cold.jpg'
+}
+else{
+document.getElementById('feel_img').src='C:\\Users\\lamar\\OneDrive\\Pictures\\weather images\\feel like hot.jpg' 
+}
+
+    document.getElementById("main_tem").innerHTML = feelsLikeC + '°C';
+ 
+  const value = Math.round(moon['main']['feels_like'] ) 
+   document.getElementById("feel_like_image").innerHTML = value+'°C';
+document.getElementById("wind").innerHTML = "Wind" + ':' + moon.wind.speed +"m/s"
+document.getElementById("city").innerHTML = moon.name
+document.getElementById("country").innerHTML = moon.sys.country
+
+       
+
+
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  stone("London");
+
+})
+
+
+
+</script>
+</head>
+<h2 id = 'title'> Weather app </h2>
+<br>
+<br>
+<input onchange=star(value) type="search" value="" id="search" placeholder="London"><img src="C:\\Users\\lamar\\OneDrive\\Pictures\\weather images\\location.avif"id="location" >
+<table id="sun">
+<tr><td><img src=""></td></tr>
+</table>
+<br>
+<br>
+<table class ='star'>
+<tr><td><img id='today_img' src=></td></tr>
+<tr ><td><p id="main_tem">20</p><span id="sm"></span></td></tr>
+<tr ><td><P id="main_des">partly couldly</P></td></tr>
+<tr><td><img id="humidity_img" src="C:\Users\lamar\OneDrive\Pictures\weather images\humdity.jpg"><p id="humidity_value"></p></td></tr>
+<tr><td><p id="humidity">humidity</p></td></tr>
+<tr><td><p id="min_temp">min_temp</p><span id="sm"></span></td></tr>
+<tr><td><p id="max_temp">max_temp</p><span id="sm2"></span></td></tr>
+<tr><td><p id="wind">wind</p></td></tr>
+<tr><td><p id="city">city name</p></td></tr>
+
+<tr><td><p id="country">country</p></td></tr>
+<tr><td><img id='feel_img'><p id="feel_like_image">temp</p></td></tr>
+<tr><td><p id="feel_like">feel like</p></td></tr>
+<tr><td><hr id ='super'></td></tr>
+<tr><td><hr id ='super_2'></td></tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+<table id="future_weather">
+<tr >
+<th id="day_1" class="day_title">day</th>
+<th id="day_2" class="day_title">icon</th>
+<th id="day_3" class="day_title">temp</th> 
+<th id="day_4" class="day_title">description</th>
+<th id="day_5" class="day_title"></th>></th>
+
+</tr>
+<tr  >
+
+<td class="gold"><img id="image_1" class="images" src="C:\Users\lamar\OneDrive\Pictures\weather images\humdity.jpg"></td>
+<td class="gold"><img id="image_2" class="images" src="C:\Users\lamar\OneDrive\Pictures\weather images\humdity.jpg"></td>
+<td class="gold"><img id="image_3" class="images" src="C:\Users\lamar\OneDrive\Pictures\weather images\humdity.jpg"></td>
+<td class="gold"><img id="image_4"class="images" src="C:\Users\lamar\OneDrive\Pictures\weather images\humdity.jpg"></td>
+<td ><img id="image_5" class="images" src="C:\Users\lamar\OneDrive\Pictures\weather images\humdity.jpg"></td>
+
+
+</tr>
+<tr>
+
+<td class="gold"><p  id="high1" class="highest_temp">high</p></td>
+<td class="gold"><p id="high2" class="highest_temp">high</p></td>
+<td class="gold"><p id="high3" class="highest_temp">high</p></td>
+<td class="gold"><p id="high4" class="highest_temp">high</p></td>
+<td ><p id="high5" class="highest_temp">high</p></td>
+
+
+
+</tr>
+<tr>
+
+<td class="gold"><p id="l1" class="lowest_temp">kl</p></td>
+<td class="gold"><p id="l2"class="lowest_temp">low</p></td>
+<td class="gold"><p id="l3" class="lowest_temp">low</p></td>
+<td class="gold"><p id="l4" class="lowest_temp">low</p></td>
+<td class="gold"><p id="l5" class="lowest_temp">low</p></td>
+<td><p id="l6" class="lowest_temp">low</p></td>
+
+
+
+</tr>
+<tr>
+
+<td class="gold"><p id="d1" class="description">description</p></td>
+<td class="gold"><p id="d2" class="description">description</p></td>
+<td class="gold"><p id="d3"class="description">description</p></td>
+<td class="gold"><p id="d4" class="description">description</p></td>
+<td ><p id="des5" class="description">description</p></td>
+
+
+
+</tr>
+<tr>
+<td><p id="date_1"class='date'>date1</p></td>
+<td><p id="date_2"class="date"> date2</p></td>
+<td><p id="date_3" class="date">date3</p></td>
+<td><p id="date_4" class = 'date'>date4</p></td>
+<td><p  id="date_5" class="date">date5</p></td>
+
+</tr>
+</table>
+</body>
+</html>
